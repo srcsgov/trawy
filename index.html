@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Lily</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffebf0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #passwordScreen, #messageScreen, #loveMessage, #otterScreen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        #passwordScreen {
+            display: flex;
+        }
+        input {
+            padding: 12px;
+            font-size: 18px;
+            width: 100%;
+            border: 2px solid #ff6384;
+            border-radius: 8px;
+            text-align: center;
+        }
+        #continueBtn, #nextPageBtn {
+            display: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            background: white;
+            color: #ff6384;
+            border: 2px solid #ff6384;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #otterImage {
+            width: 350px;
+            height: 350px;
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            animation: fly 5s linear infinite;
+        }
+        @keyframes fly {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="passwordScreen">
+        <p>Type the word to continue:</p>
+        <input type="text" id="passwordInput" placeholder="Starts with T, ends with Y">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+    <div id="messageScreen">
+        <h1 id="anniversaryText">happy 1 year ❤️</h1>
+        <button id="continueBtn" onclick="showMessage()">continue</button>
+    </div>
+    <div id="loveMessage">
+        <p>baby i love you even more and i always will,</p>
+        <p>im in awe that it's already been one year, 365 days, almost everyday,</p>
+        <p>we have went through so much together and there is still so much to come,</p>
+        <p>i will always love you too, and i know there have been downs but there have also been ups,</p>
+        <p>and i also think the three week break will do us good,</p>
+        <p>i love you so much lily velez,</p>
+        <p>ur my girl and the person i wanna spend the rest of my life, and be otters that nibble each other.</p>
+        <button id="nextPageBtn" onclick="showOtterScreen()">CONTINUE</button>
+    </div>
+    <div id="otterScreen">
+        <h1>this is u as a trawy</h1>
+        <img id="otterImage" src="otter.png" alt="Otter Image">
+    </div>
+    <script>
+        function checkPassword() {
+            let input = document.getElementById("passwordInput").value.toLowerCase();
+            if (input === "trawy") {
+                document.getElementById("passwordScreen").style.display = "none";
+                document.getElementById("messageScreen").style.display = "flex";
+                showHearts();
+                setTimeout(() => {
+                    document.getElementById("continueBtn").style.display = "block";
+                }, 1500);
+            }
+        }
+        function showHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+        function showMessage() {
+            document.getElementById("messageScreen").style.display = "none";
+            document.getElementById("loveMessage").style.display = "block";
+            document.getElementById("nextPageBtn").style.display = "block";
+        }
+        function showOtterScreen() {
+            document.getElementById("loveMessage").style.display = "none";
+            document.getElementById("otterScreen").style.display = "flex";
+        }
+    </script>
+</body>
+</html>
